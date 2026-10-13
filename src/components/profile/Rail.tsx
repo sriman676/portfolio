@@ -3,12 +3,10 @@ import type { SiteContent } from "@/lib/content";
 import { formatMonth } from "@/lib/format";
 import { TypedText } from "./TypedText";
 
-// The pitch types out after `whoami` (SPEC §3.3: ≈ 1.2 s total, instant under reduced motion).
+// Only the command types; the pitch is the LCP element, so it must paint immediately.
 const WHOAMI_STEP_MS = 45;
-const PITCH_STEP_MS = 8;
 
 export function Rail({ c }: { c: SiteContent }) {
-  const pitchStart = "whoami".length * WHOAMI_STEP_MS + 120;
   return (
     <aside className="rail" aria-label={`About ${c.person.shortName}`}>
       <p className="prompt">
@@ -21,7 +19,7 @@ export function Rail({ c }: { c: SiteContent }) {
         </div>
       )}
       <h1 className="name">{c.person.name}</h1>
-      <p className="pitch"><TypedText text={c.person.pitch} startMs={pitchStart} stepMs={PITCH_STEP_MS} /></p>
+      <p className="pitch">{c.person.pitch}</p>
       {c.availability.open && <p className="avail">{c.availability.text}</p>}
       {c.tldr.length > 0 && (
         <ul className="tldr" aria-label="In short">
