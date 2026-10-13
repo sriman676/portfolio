@@ -1,0 +1,215 @@
+{
+  "fetchedAt": "2026-10-13T05:03:50.243Z",
+  "source": "GET https://api.github.com/users/sriman676/repos?per_page=100 (unauthenticated)",
+  "repos": [
+    {
+      "name": "Adaptive-Brute-Force-Attack-Mitigation-Simulator",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-04-29T13:54:31Z",
+      "language": "C++",
+      "topics": [],
+      "stargazers_count": 0,
+      "description": "C++ simulator demonstrating adaptive rate-limiting/lockout strategies to mitigate brute-force login attacks.",
+      "html_url": "https://github.com/sriman676/Adaptive-Brute-Force-Attack-Mitigation-Simulator"
+    },
+    {
+      "name": "AEGIS",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-07-20T18:55:25Z",
+      "language": "Python",
+      "topics": [],
+      "stargazers_count": 0,
+      "description": "A hostile-by-default, zero-trust security platform that governs autonomous AI coding agents through a deterministic Rust + Python execution kernel, with a React observability dashboard.",
+      "html_url": "https://github.com/sriman676/AEGIS"
+    },
+    {
+      "name": "AI-image-caption-generator",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-04-15T18:45:51Z",
+      "language": "Python",
+      "topics": [],
+      "stargazers_count": 0,
+      "description": "Python tool that generates natural-language captions for images using a pretrained deep learning model",
+      "html_url": "https://github.com/sriman676/AI-image-caption-generator"
+    },
+    {
+      "name": "Anganwadi-ai",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-07-10T08:51:27Z",
+      "language": "TypeScript",
+      "topics": [],
+      "stargazers_count": 0,
+      "description": "AI-powered tools built for social impact, aligned with Wadhwani AI's mission and Helps Anganwadi health workers manage child nutrition and care using AI",
+      "html_url": "https://github.com/sriman676/Anganwadi-ai"
+    },
+    {
+      "name": "Appointment-System",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-05-03T17:03:15Z",
+      "language": "JavaScript",
+      "topics": [],
+      "stargazers_count": 0,
+      "description": "Full-stack MERN appointment booking and management platform with role-based access control, real-time notifications, and analytics dashboards.",
+      "html_url": "https://github.com/sriman676/Appointment-System"
+    },
+    {
+      "name": "eco_optimizer",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-05-12T06:57:05Z",
+      "language": "TypeScript",
+      "topics": [],
+      "stargazers_count": 0,
+      "description": "AI-assisted sustainability dashboard that runs a priority-weighted optimization engine to recommend the most cost-effective environmental actions across 5 SDG-aligned domains (Next.js + FastAPI).",
+      "html_url": "https://github.com/sriman676/eco_optimizer"
+    },
+    {
+      "name": "Farmers_app",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-04-01T17:53:51Z",
+      "language": "HTML",
+      "topics": [],
+      "stargazers_count": 0,
+      "description": "Flask-based farm-to-consumer marketplace where verified farmers list produce directly to buyers, with role-based auth (buyer/farmer/admin), farmer ID-proof verification, and an admin approval dashboard.",
+      "html_url": "https://github.com/sriman676/Farmers_app"
+    },
+    {
+      "name": "FedDecept",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-08-07T17:32:46Z",
+      "language": "Python",
+      "topics": [],
+      "stargazers_count": 0,
+      "description": "Federated learning for cyber-deception strategy coordination — organizations improve honeypot placement, lures, and responses collaboratively while sharing only model updates, never raw telemetry. Includes poisoning-robustness and privacy evaluation.",
+      "html_url": "https://github.com/sriman676/FedDecept"
+    },
+    {
+      "name": "GardRail",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-07-23T22:43:57Z",
+      "language": "Python",
+      "topics": [],
+      "stargazers_count": 0,
+      "description": "Enterprise-grade middleware that detects and blocks prompt-injection attacks on AI agents in real time, with behavioral drift detection, self-evolving rules, and multi-tenant observability (FastAPI).",
+      "html_url": "https://github.com/sriman676/GardRail"
+    },
+    {
+      "name": "humanizer",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-04-13T15:54:28Z",
+      "language": "Python",
+      "topics": [],
+      "stargazers_count": 0,
+      "description": "Local-first Python tool that rewrites long-form text into natural prose via a local Ollama LLM pipeline — supports PDF/DOCX/TXT input, CLI and Flask web UI.",
+      "html_url": "https://github.com/sriman676/humanizer"
+    },
+    {
+      "name": "meshwork",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-08-22T14:26:44Z",
+      "language": "Go",
+      "topics": [],
+      "stargazers_count": 0,
+      "description": "A private peer-to-peer mesh for sharing compute, GPUs, and installed software with a closed circle of friends. No server, no marketplace, no strangers — every task runs in a throwaway microVM and is destroyed after. Single static Go binary, Noise-encrypted, with signed audit trails.",
+      "html_url": "https://github.com/sriman676/meshwork"
+    },
+    {
+      "name": "NEXUS",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-07-17T23:50:40Z",
+      "language": "Python",
+      "topics": [],
+      "stargazers_count": 0,
+      "description": "Identity-centric cyber resilience platform for critical infrastructure, combining anomaly detection, MITRE ATT&CK attribution, gated response, digital-twin simulation, and safe self-evolution.",
+      "html_url": "https://github.com/sriman676/NEXUS"
+    },
+    {
+      "name": "portfolio-main",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-04-22T14:05:05Z",
+      "language": "JavaScript",
+      "topics": [],
+      "stargazers_count": 0,
+      "description": "Source code for my personal developer portfolio site.",
+      "html_url": "https://github.com/sriman676/portfolio-main"
+    },
+    {
+      "name": "SOC",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-05-14T18:28:22Z",
+      "language": "Python",
+      "topics": [],
+      "stargazers_count": 0,
+      "description": "An OpenEnv-style simulation environment for training and benchmarking AI agents on SOC (Security Operations Center) alert-triage tasks, with a Gradio UI.",
+      "html_url": "https://github.com/sriman676/SOC"
+    },
+    {
+      "name": "SOC_Automation",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-03-16T06:52:21Z",
+      "language": "Python",
+      "topics": [],
+      "stargazers_count": 0,
+      "description": "Python framework that ingests Windows authentication logs (Event IDs 4624/4625), applies rule-based detection and correlation, and generates explainable SOC-style alerts — supports offline fallback mode and live Windows Event Viewer ingestion.",
+      "html_url": "https://github.com/sriman676/SOC_Automation"
+    },
+    {
+      "name": "sriman676",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-04-18T05:54:36Z",
+      "language": null,
+      "topics": [],
+      "stargazers_count": 0,
+      "description": "My Special Github repo",
+      "html_url": "https://github.com/sriman676/sriman676"
+    },
+    {
+      "name": "trustnet",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-04-11T12:14:14Z",
+      "language": "JavaScript",
+      "topics": [],
+      "stargazers_count": 0,
+      "description": "Decentralized scam-reporting platform combining Solidity smart contracts (Polygon Amoy) with a Next.js frontend — wallet-based reporting, AI-assisted message analysis, and IPFS evidence storage for community-driven scam intelligence.",
+      "html_url": "https://github.com/sriman676/trustnet"
+    },
+    {
+      "name": "Vishu",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-09-28T22:28:42Z",
+      "language": "TypeScript",
+      "topics": [
+        "ai-agent",
+        "composio",
+        "llm",
+        "local-first",
+        "mcp",
+        "model-context-protocol",
+        "ollama",
+        "personal-assistant",
+        "typescript",
+        "voice-assistant"
+      ],
+      "stargazers_count": 0,
+      "description": "A local-first personal-assistant AI that never hits a rate limit — pool every provider key plus your local model into one ring. Local vision, voice, two-way MCP gateway. MIT.",
+      "html_url": "https://github.com/sriman676/Vishu"
+    }
+  ]
+}
