@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { getContent } from "@/lib/content";
 import { baseOpenGraph } from "@/lib/metadata";
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <div className="stars" aria-hidden="true" />
         {children}
+        <Analytics />
       </body>
     </html>
   );
