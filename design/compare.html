@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cosmos v3 — design preview (B "Console")</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root { color-scheme: dark; }
+body { margin: 0; padding: 32px; background: #03040A; color: #E7ECF5; font: 400 1rem/1.5 "IBM Plex Sans", system-ui, sans-serif; }
+h1 { margin: 0 0 6px; font-size: 1.875rem; font-weight: 300; }
+p { margin: 0 0 28px; color: #9AA4BD; max-width: 72ch; }
+a { color: #6FE3E9; }
+.board { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
+figure { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+figcaption { font: 400 0.8125rem/1.4 "IBM Plex Mono", monospace; color: #9AA4BD; }
+.frame { border: 1px solid #2A3557; border-radius: 12px; overflow: hidden; background: #05070F; }
+/* desktop shown at 1440×900, scaled to 60% */
+.desk { width: 864px; height: 540px; }
+.desk iframe { width: 1440px; height: 900px; transform: scale(0.6); transform-origin: 0 0; border: 0; }
+.phone { width: 390px; height: 844px; border-radius: 28px; }
+.phone iframe { width: 390px; height: 844px; border: 0; }
+</style>
+</head>
+<body>
+<h1>Design preview: B "Console"</h1>
+<p>Static mockup with real content from <code>src/data/content.ts</code>. The CSS black hole and starfield stand in for the 3D layer. Open <a href="b-console.html">b-console.html</a> on its own to tab through it, or open it with <code>#terminal</code> to see the ⌘K terminal.</p>
+<div class="board">
+  <figure><figcaption>Desktop 1440 × 900 (scaled 60%)</figcaption><div class="frame desk"><iframe src="b-console.html" title="Desktop page"></iframe></div></figure>
+  <figure><figcaption>Desktop with ⌘K terminal open</figcaption><div class="frame desk"><iframe src="b-console.html#terminal" title="Desktop page with terminal open"></iframe></div></figure>
+  <figure><figcaption>Phone 390 × 844</figcaption><div class="frame phone"><iframe src="b-console.html" title="Phone page"></iframe></div></figure>
+  <figure><figcaption>Phone with terminal as a bottom sheet</figcaption><div class="frame phone"><iframe src="b-console.html#terminal" title="Phone page with terminal open"></iframe></div></figure>
+</div>
+</body>
+</html>

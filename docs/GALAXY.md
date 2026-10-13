@@ -94,9 +94,19 @@ eased camera move ≈ 0.6 s), `instant` (reduced motion: crossfade only).
 **Interrupts:** a new `warpTo` mid-warp retargets smoothly. Never queue.
 
 ## 4. Terminal ↔ warp integration
-- On a command with a 3D destination, the terminal **shrinks to a slim bar** at the bottom showing
-  `warping → <target>…` (with a skip button) while the warp plays, then **reopens** with the output, e.g.
-  `docked at: experience · fnCyber station`.
+- On a command with a 3D destination (owner decision, 2026-10-13, replaces the earlier "slim bar, then reopen"):
+  1. **Genie minimize** (~450 ms): the terminal pours into the "Type a command ⌘K" button (desktop rail; the
+     bottom command bar on phones), macOS-style. Built with GSAP + an animated CSS `clip-path` curve + scale on
+     the real DOM (no WebGL, no extra library).
+  2. The button becomes the warp status: `warping → <target>…` with a skip control, while the light-speed warp
+     (§3) plays.
+  3. **Arrival:** the region's entry effect plays and its content panel opens; focus moves to the panel heading.
+     The terminal **stays minimized**; the button now reads `docked at: <region>` (e.g. `docked at: research
+     nebula`). Clicking it or pressing ⌘K reverses the genie and reopens the terminal with the `docked at:` line in
+     the scrollback.
+  - An `aria-live="polite"` region announces "Warping to <target>" and "Docked at <region>".
+  - Reduced motion: no genie, no streaks; the terminal closes instantly, the `instant` warp variant runs, the
+    button text still updates.
 - Command → target map:
   | Command | Target |
   |---|---|
@@ -171,7 +181,7 @@ exception is Teju mode's music (TEJU_MODE §4).
 - [ ] First warp has no hitch (also check the frame-time report)
 - [ ] Scrolling start to finish: never a moment where nothing on screen is moving (high/medium tier)
 - [ ] Every terminal destination: streak jump → drop-out → the correct entry effect → panel
-- [ ] The terminal shrinks during the warp and reopens with `docked at:`
+- [ ] The terminal genie-minimizes into the ⌘K button, shows `docked at:` on arrival, and reopens from it
 - [ ] Panels are readable over every region (bright nebula and bloom included)
 - [ ] Cursor parallax feels subtle, not floaty. Phone tilt works after allowing it
 - [ ] `/work/feddecept` → back: warps both ways, the canvas never flashes or reloads
@@ -223,7 +233,8 @@ exception is Teju mode's music (TEJU_MODE §4).
 - Every section has its element, generated from content. Adding a paper adds a nebula star with no code
   change.
 - Every terminal destination command warps and docks correctly, with skip working.
-- The terminal shrinks during the warp and reopens with output. First warp ≈ 1.5 s, later ≈ 0.8 s.
+- The terminal genie-minimizes into the ⌘K button during the warp, stays minimized on arrival with
+  `docked at: <region>`, and reopens from the button or ⌘K. First warp ≈ 1.5 s, later ≈ 0.8 s.
 - Free-flight works on desktop and is absent on phones. Esc always exits.
 - With WebGL disabled, the HTML is complete and the 2D map works. A forced Canvas throw falls back without
   a page crash.

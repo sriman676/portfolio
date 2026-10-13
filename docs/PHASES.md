@@ -154,7 +154,7 @@ the blurb plus "Write-up coming", with no lorem. Raw HTML in body is rendered as
 ## [MUST] Phase 6 — ⌘K terminal
 **Read:** TERMINAL.md, SPEC §6, GALAXY §4.
 **Prompt:** Implement `docs/TERMINAL.md` §1–§4 fully (all commands incl. fun ones), wired to the warp system
-per GALAXY §4 (terminal shrinks to a bar during warps, then reopens with `docked at:` output), plus UX feature A (chips +
+per GALAXY §4 (terminal genie-minimizes into the ⌘K button during warps and stays minimized with `docked at:` on arrival), plus UX feature A (chips +
 quick actions) and C (deep links `/?cmd=` with the whitelist, plus share). Secret-phrase hook emits
 `'edit' | 'heart' | null`. For now `'edit'` opens a placeholder "Edit mode coming in Phase 8", and `'heart'`
 does nothing until Phase 7. Unit-test the parser, completion, typo distance, history-secret exclusion and the

@@ -44,8 +44,8 @@
   Focus is trapped. Every chip and result is a real `<button>`.
 
 ## 4. Commands
-Commands with a 3D destination warp there first (GALAXY §3–§4). The terminal shrinks to a bar during the warp,
-then reopens with the output.
+Commands with a 3D destination warp there first (GALAXY §3–§4). The terminal genie-minimizes into the ⌘K button
+during the warp and stays minimized on arrival (`docked at: <region>`); the button or ⌘K reopens it.
 | Command | Aliases | Does |
 |---|---|---|
 | `help` | `?` (in palette) | Grouped list of commands, each clickable |
