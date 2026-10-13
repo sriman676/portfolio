@@ -64,6 +64,22 @@ Background: 3 parallax star layers + 1 faint galactic dust band. These are the s
 - First screen on desktop: the black hole fills the view, with name + pitch + TL;DR + résumé/email buttons on
   top. Scroll hint: "Scroll to travel · ⌘K for commands".
 
+### 2.1 World first, one screen (owner decision 2026-10-13, reference: bruno-simon.com)
+- **One screen, one scrollbar.** The canvas fills the whole viewport behind everything; nothing on the page
+  scrolls on its own (no inner scrollbars). The page has exactly one scrollbar, and scrolling it flies the
+  camera (§2 above).
+- **World mode (default when the tier allows 3D):** landing shows only the full-screen galaxy with the name +
+  pitch overlay. The B "Console" identity rail is not shown as a column; its content appears as the first
+  holographic panel at the black hole, and each later section appears as a panel anchored to its region
+  (GALAXY §10 layer 6). An **Explore** button switches to free-flight (§5) for Bruno-style exploring.
+- **Page mode:** a persistent **"Read as page"** button switches to the approved B "Console" layout (sticky
+  rail + content column, `docs/DESIGN_DECISION.md`) with the galaxy dimmed behind it; "Back to the galaxy"
+  returns. The choice is remembered in `localStorage` (`view.mode`, try/catch). Page mode is also the forced
+  view for the low tier, WebGL failure, reduced motion and no-JS, so recruiters and crawlers always get the
+  complete HTML (CLAUDE.md rule 1).
+- Both modes render the same server HTML; switching modes only changes CSS and the camera, never content.
+- Builds in Phases 3 (canvas behind everything), 4.5 (world-mode panels on scroll) and 4.9 (holographic panels).
+
 ## 3. Warp system (light-speed travel)
 `warpTo(target, { variant })`. A single store action (zustand) used by the terminal, side nav, scroll-spy,
 deep links, the minimap and free-flight clicks.

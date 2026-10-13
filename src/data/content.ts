@@ -3,66 +3,7 @@
 // is a question in docs/INTAKE.md and is resolved only by the owner. Repo URLs checked against
 // github.com/sriman676 on 2026-10-12. Intake answers applied 2026-10-13 (docs/INTAKE.md).
 
-export type Status =
-  | "published" | "under-review" | "in-preparation"   // papers
-  | "shipped" | "in-progress" | "proposal"            // projects
-  | "on-github"                                       // neutral "On GitHub" badge until the owner sets a status (SPEC §4.4)
-  | "TODO(owner)";
-
-export interface Metric { label: string; value: string; note?: string }
-
-export interface Item {
-  slug: string;                       // ^[a-z0-9-]{2,60}$
-  kind: "paper" | "project";
-  title: string;
-  subtitle?: string;
-  blurb: string;                      // ≤ 400 chars, one plain sentence or two
-  status: Status;
-  role?: string;                      // e.g. "Sole author", "First author", "Team of 5 — my part: …"
-  skills: string[];                   // also drives the galaxy's skill lines (GALAXY §1)
-  featured?: boolean;
-  links?: { label: string; url: string }[];   // https only
-  metricsPublic?: boolean;
-  metrics?: Metric[];
-  body?: string;                      // case-study Markdown subset (SECURITY.md §3.4)
-  retro?: string;                     // "What I'd do differently" (owner-written; hidden if empty)
-  source?: "seed" | "github" | "kv";
-  repo?: string;                      // GitHub repo name → links this item to sync data (README, topics, pushed_at)
-  hide?: boolean;                     // owner explicitly hides this item (satisfies the intake gate)
-  draft?: boolean;                    // README-drafted text awaiting owner approval → never public
-}
-
-/** Display order. Edit mode writes overrides to KV; this is the seed default. */
-export interface Ordering {
-  preset: "manual" | "featured-first" | "recently-updated" | "most-stars";
-  pinnedFirst: string[];              // slugs, in order
-  pinnedLast: string[];               // slugs, in order
-  manual: string[];                   // slugs, full manual order (used when preset = "manual")
-}
-
-export interface Content {
-  person: {
-    name: string; shortName: string; pitch: string; bio: string; location: string;
-    photo?: string;                   // /public path; monogram until set
-  };
-  tldr: string[];                     // ≤ 3 proof lines under the hero (EXTRAS §5)
-  now: string[];
-  updatedAt: string;                  // YYYY-MM, for Now + Availability (EXTRAS §9)
-  profiles: { platform: string; handle: string; url: string }[];  // verified public profiles (EXTRAS §11)
-  experience: { org: string; title: string; start: string; end?: string; summary: string }[];
-  education: { school: string; degree: string; start: string; end: string; cgpa?: string; showCgpa: boolean }[];
-  items: Item[];
-  certs: { title: string; issuer: string; status: "earned" | "in-progress"; verifyUrl?: string; hide?: boolean }[];
-  skills: { group: string; items: string[] }[];
-  links: { github: string; linkedin: string; email: string; orcid: string; resume?: string };
-  faq: { q: string; a: string }[];
-  hiddenRepos: string[];
-  refs: string[];                     // whitelisted ?utm_source= values (EXTRAS §16)
-  ordering: Ordering;
-  heart: { letter: string; yesMessage: string; noLines: string[] };  // TEJU_MODE.md
-  availability: { open: boolean; text: string };                       // status line + whoami/neofetch
-  terminal: { hireMessage: string; tourCaptions: { section: string; caption: string }[] };  // TERMINAL.md
-}
+import type { Content } from "./schema";
 
 const GH = "https://github.com/sriman676";
 

@@ -42,3 +42,7 @@ Primary button text `--space-0` on `--signal-done`: 13.26. All ≥ 4.5:1.
 - 2026-10-13: terminal → warp flow changed (GALAXY §4): genie-minimize into the "Type a command ⌘K" button,
   light-speed warp, region opens, terminal stays minimized showing `docked at: <region>`. The rail button in
   `design/b-console.html` is where the terminal docks.
+- 2026-10-13: one screen, one scrollbar: the rail is pinned without its own scrollbar (falls back to scrolling
+  with the page on screens under 800 px tall). World-first model added (GALAXY §2.1, reference bruno-simon.com):
+  the 3D galaxy is the default view and this B layout becomes "page mode" behind a "Read as page" button,
+  and the forced view for low tier, no WebGL, reduced motion and no JS.
