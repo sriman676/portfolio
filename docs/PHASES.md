@@ -56,7 +56,7 @@ and ask the owner to choose. Record the decision in `docs/DESIGN_DECISION.md`.
 **Read:** SPEC §2–4, EXTRAS §5 §9 §11, DESIGN_DECISION.md.
 **Prompt:** Scaffold Next 15 App Router + TS strict + Tailwind 4 + ESLint. Add design tokens (SPEC §3.1) and
 fonts (§3.2). Create `src/data/schema.ts` (zod) and `src/data/content.ts` from `seed/content.seed.ts`.
-Implement the placeholder rule (§4.3). Build `/` fully server-rendered, matching `docs/DESIGN_DECISION.md`: Hero (terminal-typed pitch,
+Implement the placeholder rule (§4.3). Build `/` fully server-rendered, matching `docs/DESIGN_DECISION.md`: Hero (typed `whoami` prompt, pitch painted immediately per SPEC §3.3,
 instant under reduced motion), Recruiter TL;DR (EXTRAS §5), platform badges (§11), Now (with "Updated" date, §9), Experience, Research, Projects, Skills, Certifications, Education, FAQ and Contact,
 with the status badges from §3.4. Add a skip link, landmarks, and visible focus. Create
 `.github/workflows/ci.yml` (`npm ci`, tsc, lint, build, `npm audit --omit=dev --audit-level=high`,

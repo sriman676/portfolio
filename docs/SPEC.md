@@ -61,8 +61,9 @@ A light theme is **not** in scope. Use `color-scheme: dark`.
 - Line length ≤ 72ch. Body line-height 1.6. Headings 1.15.
 
 ### 3.3 Motion
-- **One** orchestrated load moment: the hero terminal types the pitch line (about 1.2 s) while the starfield
-  fades in. Nothing else animates on load.
+- **One** orchestrated load moment: the hero prompt types the `whoami` command (about 0.3 s) while the starfield
+  fades in; the name and pitch paint immediately, because the pitch is the LCP element and typing it cost
+  Lighthouse Performance on production (owner decision, 2026-10-13). Nothing else animates on load.
 - Response motion only: panel opens, ⌘K open/close, star hover glow.
 - `prefers-reduced-motion: reduce` → no typing (text appears instantly), starfield static, no camera tweens.
 - Library (owner decision 2026-10-13): **GSAP** (`gsap` + `@gsap/react` `useGSAP`, ScrollTrigger) for all DOM and
