@@ -48,3 +48,6 @@ Primary button text `--space-0` on `--signal-done`: 13.26. All ≥ 4.5:1.
   and the forced view for low tier, no WebGL, reduced motion and no JS.
 - 2026-10-13: no divider line, no separate rail background, no line under the black hole: the page reads as
   one continuous screen.
+- 2026-10-13: the profile is no longer a side column. The first screen is one full-width hero: profile (whoami,
+  avatar, name, pitch, TL;DR, links) on the left over the galaxy, black hole on the right; on phones the black hole
+  sits above the profile. All sections follow in one column. "Page mode" in GALAXY §2.1 means this layout.

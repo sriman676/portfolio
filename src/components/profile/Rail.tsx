@@ -8,7 +8,7 @@ const WHOAMI_STEP_MS = 45;
 
 export function Rail({ c }: { c: SiteContent }) {
   return (
-    <aside className="rail" aria-label={`About ${c.person.shortName}`}>
+    <div className="identity">
       <p className="prompt">
         {c.person.shortName.toLowerCase()}@cosmos:~$ <span className="cmdtext"><TypedText text="whoami" stepMs={WHOAMI_STEP_MS} /></span>
       </p>
@@ -37,6 +37,6 @@ export function Rail({ c }: { c: SiteContent }) {
         {!c.profiles.some((p) => p.platform === "LinkedIn") && <li><a href={c.links.linkedin}>LinkedIn</a></li>}
       </ul>
       <p className="rail-foot"><span>{c.person.location}</span><span>updated {formatMonth(c.updatedAt)}</span></p>
-    </aside>
+    </div>
   );
 }

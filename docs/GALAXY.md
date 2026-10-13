@@ -72,13 +72,25 @@ Background: 3 parallax star layers + 1 faint galactic dust band. These are the s
   pitch overlay. The B "Console" identity rail is not shown as a column; its content appears as the first
   holographic panel at the black hole, and each later section appears as a panel anchored to its region
   (GALAXY §10 layer 6). An **Explore** button switches to free-flight (§5) for Bruno-style exploring.
-- **Page mode:** a persistent **"Read as page"** button switches to the approved B "Console" layout (sticky
-  rail + content column, `docs/DESIGN_DECISION.md`) with the galaxy dimmed behind it; "Back to the galaxy"
+- **Page mode:** a persistent **"Read as page"** button switches to the page layout (full-width
+  hero with the profile over the black hole, then one content column; `docs/DESIGN_DECISION.md`) with the galaxy dimmed behind it; "Back to the galaxy"
   returns. The choice is remembered in `localStorage` (`view.mode`, try/catch). Page mode is also the forced
   view for the low tier, WebGL failure, reduced motion and no-JS, so recruiters and crawlers always get the
   complete HTML (CLAUDE.md rule 1).
 - Both modes render the same server HTML; switching modes only changes CSS and the camera, never content.
 - Builds in Phases 3 (canvas behind everything), 4.5 (world-mode panels on scroll) and 4.9 (holographic panels).
+
+### 2.2 Scroll intro: orbit → spaghettification → inside (owner decision 2026-10-13; first piece of Phase 4.5)
+- **First screen (world mode):** only the black hole, centred and large, the disk visibly spinning (Keplerian:
+  inner rings faster), a small "Scroll to enter" hint. The profile is not shown yet (it is still in the HTML).
+- **Scroll beat 1, orbit:** the camera swings around the hole on a descending orbit, so the disk is seen from
+  changing angles and the lensing (far side over the top, photon ring) shifts with the viewpoint.
+- **Beat 2, spaghettification:** as the camera falls inward, stars and dust stretch radially toward the hole
+  (tidal stretch ∝ 1/r³ in the star and dust shaders; PHYSICS §3.4) and the field of view narrows.
+- **Beat 3, inside:** the camera crosses the horizon: a brief white-out, then the intro (whoami, avatar, name,
+  pitch, TL;DR, links) appears as the first panel, and further scrolling continues to the sections.
+- Native scroll drives everything (no scroll-jacking); scrolling back reverses it. Reduced motion, the low tier and
+  no-JS skip the flight: the page layout shows the intro immediately.
 
 ## 3. Warp system (light-speed travel)
 `warpTo(target, { variant })`. A single store action (zustand) used by the terminal, side nav, scroll-spy,

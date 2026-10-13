@@ -1,0 +1,5 @@
+{
+  "$comment": "Per-chunk gzip budgets in kB (GALAXY §8, INTAKE Q-002). CI fails at > 10% over a recorded value; raise one only with the owner's approval.",
+  "html-first-load-js": 139.2,
+  "galaxy-core": 239.9
+}

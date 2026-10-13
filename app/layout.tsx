@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { GalaxyLoader } from "@/components/galaxy/GalaxyLoader";
 import { getContent } from "@/lib/content";
 import { baseOpenGraph } from "@/lib/metadata";
 import { siteUrl } from "@/lib/site";
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body>
         <div className="stars" aria-hidden="true" />
+        <GalaxyLoader />
         {children}
         <Analytics />
       </body>
