@@ -83,7 +83,7 @@ those docs. Don't load everything again. If you need another doc, say which and 
 dev `npm run dev` · build `npm run build` · lint `npm run lint` · types `npx tsc --noEmit` · test `npm test`
 
 ## Status (update as you go) — priority labels in docs/PHASES.md
-- [x] 0 Preflight (docs/PHASE0_REPORT.md)  - [x] 0.5 Intake gate  - [x] 0.75 Design preview  - [x] 1 Scaffold + content + profile page  - [ ] 2 SEO/AEO  - [ ] 2.5 First live deploy
+- [x] 0 Preflight (docs/PHASE0_REPORT.md)  - [x] 0.5 Intake gate  - [x] 0.75 Design preview  - [x] 1 Scaffold + content + profile page  - [x] 2 SEO/AEO  - [ ] 2.5 First live deploy
 - [ ] 3 Galaxy core  - [ ] 4 Regions  - [ ] 4.5 Journey + warp  - [ ] 4.75 Free-flight  - [ ] 4.8 Physics + interactions  - [ ] 4.9 Immersion pass  - [ ] 5 Case studies  - [ ] 6 ⌘K terminal
 - [ ] 7 Teju mode  - [ ] 8 Edit backend  - [ ] 9 Edit UI  - [ ] 10 GitHub sync + ordering
 - [ ] 11 Contact/résumé/UX extras/polish  - [ ] 12 Hardening + CI  - [ ] 13 Owner secrets + deploy

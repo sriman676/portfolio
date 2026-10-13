@@ -1,5 +1,6 @@
 import { content as seed } from "@/data/content";
 import { Content, type Item, type Ordering } from "@/data/schema";
+import { mergeContent } from "@/lib/merge";
 
 const PLACEHOLDER = "TODO(owner)";
 
@@ -49,7 +50,7 @@ export function orderItems<T extends Pick<Item, "slug" | "featured">>(items: T[]
 
 /** Validated, filtered, ordered content for rendering. Seed only until GitHub (Phase 10) and KV (Phase 8). */
 export function getContent() {
-  const c = Content.parse(seed);
+  const c = Content.parse(mergeContent(seed));
   const text = (lines: string[]) => lines.filter((l) => !hasPlaceholder(l) || process.env.NODE_ENV === "development");
   const items = orderItems(visible(c.items), c.ordering);
   return {
