@@ -148,7 +148,7 @@ Hand the §11 checklist to the owner, and the owner reports the results.
 **Prompt:** `/work/[slug]` with `generateStaticParams` + ISR, using the template in EXTRAS §8 (incl. "What I'd
 do differently"). Also build lab notes per EXTRAS §4 (`/notes`, `/notes/[slug]`, `content/notes/*.md`). Add a minimal safe
 Markdown renderer for `body` (SECURITY.md §3.4). Add per-page metadata and JSON-LD.
-**Accept:** every non-TODO item has a page. Metrics appear only for FedDecept. Missing body → the page shows
+**Accept:** every non-TODO item has a page. Metrics appear only for FedDecept and AXON (owner-approved). Missing body → the page shows
 the blurb plus "Write-up coming", with no lorem. Raw HTML in body is rendered as text (unit test).
 
 ## [MUST] Phase 6 — ⌘K terminal

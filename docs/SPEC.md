@@ -78,7 +78,7 @@ A light theme is **not** in scope. Use `color-scheme: dark`.
 ### 3.4 Status honesty
 Every project/paper shows exactly one status badge:
 `Published` · `Under review` · `In preparation` · `Shipped` · `In progress` · `Proposal`.
-Metrics appear only when the item has `metricsPublic: true` **and** a `metrics[]` array (FedDecept is
+Metrics appear only when the item has `metricsPublic: true` **and** a `metrics[]` array (FedDecept and AXON are
 approved; nothing else is yet).
 
 ## 4. Content model
@@ -145,6 +145,10 @@ shortcuts, résumé preview) are specified there too.
 
 ## 7. Edit mode (summary; SECURITY.md governs)
 - Trigger word in ⌘K → passphrase dialog → `POST /api/edit/login` → httpOnly session cookie (30 min).
+- **Scope (owner decision, INTAKE round 2):** every content section is editable, not only papers/projects: person
+  (bio, photo), TL;DR, Now, experience, education (incl. CGPA), certs (add title + issuer + link), skills, FAQ,
+  availability, terminal texts, Teju-mode texts, notes, retros and ordering. Each section gets its own zod schema
+  and the same SECURITY.md controls; list sections (experience, certs, FAQ…) use the same upsert/tombstone model.
 - The editor is a drawer listing all items (seed + KV), with actions Add / Edit / Hide (tombstone) /
   Restore / Delete KV item. The form mirrors the zod schema, has a live preview card, and Save →
   `PUT /api/edit/items/:slug`.
