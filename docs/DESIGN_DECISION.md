@@ -46,3 +46,5 @@ Primary button text `--space-0` on `--signal-done`: 13.26. All ≥ 4.5:1.
   with the page on screens under 800 px tall). World-first model added (GALAXY §2.1, reference bruno-simon.com):
   the 3D galaxy is the default view and this B layout becomes "page mode" behind a "Read as page" button,
   and the forced view for low tier, no WebGL, reduced motion and no JS.
+- 2026-10-13: no divider line, no separate rail background, no line under the black hole: the page reads as
+  one continuous screen.
