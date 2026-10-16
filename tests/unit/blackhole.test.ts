@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { B_CRIT, R_ISCO, blackbodyRGB, diskShift, diskTemperature, traceRay } from "@/lib/physics/blackhole";
+import { B_CRIT, R_ISCO, blackbodyRGB, diskBrightness, diskShift, diskTemperature, srgbToLinear, traceRay } from "@/lib/physics/blackhole";
 
 /** Fire a photon from far away along +z with impact parameter b (offset in x). */
 const shoot = (b: number) => traceRay([b, 0, -400], [0, 0, 1], { rEscape: 600, rOut: 0 });
@@ -42,7 +42,17 @@ describe("disk emission", () => {
     const receding = diskShift(5, -1);
     expect(approaching).toBeGreaterThan(1);
     expect(receding).toBeLessThan(1);
-    expect(approaching ** 3 / receding ** 3).toBeGreaterThan(5);
+    const t = diskTemperature(5, 4300);
+    const ratio = diskBrightness(approaching, t, 4300) / diskBrightness(receding, t, 4300);
+    expect(ratio).toBeCloseTo((approaching / receding) ** 4, 9); // frequency-integrated beaming is g⁴
+    expect(diskBrightness(1, 4300, 4300)).toBe(1);
+  });
+
+  it("linearises sRGB with the IEC 61966-2-1 curve", () => {
+    expect(srgbToLinear(0)).toBe(0);
+    expect(srgbToLinear(1)).toBeCloseTo(1, 12);
+    expect(srgbToLinear(0.5)).toBeCloseTo(0.2140, 4);
+    expect(srgbToLinear(0.04045)).toBeCloseTo(0.04045 / 12.92, 12); // linear segment
   });
 
   it("maps temperatures to plausible star colours", () => {

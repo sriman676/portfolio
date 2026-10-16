@@ -4,10 +4,10 @@
 // No WebGL, no dependencies. Owner runs it and commits the output:  node scripts/render-hero-still.mjs [width]
 import { writeFileSync } from "node:fs";
 import { deflateSync } from "node:zlib";
-import { traceRay, diskTemperature, diskShift, blackbodyRGB } from "../src/lib/physics/blackhole.ts";
+import { traceRay, diskTemperature, diskShift, diskBrightness, blackbodyRGB, srgbToLinear } from "../src/lib/physics/blackhole.ts";
 import { HERO_CAMERA, DISK } from "../src/lib/hero-scene.ts";
 
-const W = Number(process.argv[2] ?? 1200);
+const W = Number(process.argv[2] ?? 1600); // the committed public/hero-still.png is 1600 wide
 const H = Math.round(W / HERO_CAMERA.aspect);
 const out = new URL("../public/hero-still.png", import.meta.url);
 
@@ -39,7 +39,7 @@ function fbm(x, y) {
   return v;
 }
 
-/** Same emission model as the shader: blackbody at the Doppler/gravitationally shifted temperature, I ∝ g³ (T/T_peak)⁴. */
+/** Same emission model as the shader: blackbody colour at the shifted temperature gT (linearised), brightness (gT/T_peak)⁴. */
 function diskEmission(hit) {
   const phiHat = [-hit.z / hit.r, 0, hit.x / hit.r]; // prograde rotation seen from +y
   const toObserver = hit.dir.map((n) => -n);
@@ -49,8 +49,8 @@ function diskEmission(hit) {
   const angle = Math.atan2(hit.z, hit.x);
   const streaks = 0.55 + 0.9 * fbm(hit.r * 1.6, angle * 6 / Math.PI + hit.r * 0.35);
   const fade = Math.min(1, (DISK.rOut - hit.r) / 2.5);
-  const intensity = g ** 3 * (t / DISK.peakKelvin) ** 4 * streaks * Math.max(fade, 0);
-  return blackbodyRGB(g * t).map((c) => c * intensity * DISK.exposure);
+  const intensity = diskBrightness(g, t, DISK.peakKelvin) * streaks * Math.max(fade, 0);
+  return blackbodyRGB(g * t).map((c) => srgbToLinear(c) * intensity * DISK.exposure);
 }
 
 function background(dir) {
@@ -60,7 +60,7 @@ function background(dir) {
   if (hash(cell[0], cell[1], cell[2]) > 0.0035) return [0, 0, 0];
   const d = Math.hypot(...p.map((n, i) => n - cell[i] - 0.5));
   const b = Math.max(0, 1 - d * 2.2) ** 2 * 1.4;
-  return blackbodyRGB(3000 + hash(cell[2], cell[0], cell[1]) * 12000).map((c) => c * b);
+  return blackbodyRGB(3000 + hash(cell[2], cell[0], cell[1]) * 12000).map((c) => srgbToLinear(c) * b);
 }
 
 const tone = (v) => Math.round(255 * Math.pow(v / (1 + v), 1 / 2.2)); // Reinhard + gamma

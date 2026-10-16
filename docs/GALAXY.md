@@ -37,7 +37,7 @@ Background: 3 parallax star layers + 1 faint galactic dust band. These are the s
 
 ### 1.1 Physical accuracy (owner decision, INTAKE Q-003; overrides artistic approximations above)
 - **Black hole (Schwarzschild):** shadow radius √27·GM/c² (≈ 2.6 r_s), photon ring at 1.5 r_s, disk from the ISCO
-  (3 r_s) outward, thin-disk temperature T ∝ r^-3/4 → blackbody colour, Doppler beaming (intensity × D³) and
+  (3 r_s) outward, thin-disk temperature T ∝ r^-3/4 → blackbody colour, Doppler beaming (frequency-integrated intensity × D⁴, colour from the blackbody at the shifted temperature, linearised; docs/VERIFICATION.md 5b-i) and
   gravitational redshift √(1 − r_s/r). High tier: per-pixel ray bending in the shader (numerical geodesic steps), so
   the far side of the disk shows above and below the shadow.
 - **Warp:** relativistic aberration cos θ' = (cos θ + β)/(1 + β cos θ) (stars crowd forward) and relativistic

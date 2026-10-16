@@ -97,7 +97,20 @@ export function diskTemperature(r: number, tPeak = 7000, rIn = R_ISCO): number {
   return (tPeak * diskShape(r, rIn)) / PEAK_SHAPE;
 }
 
-/** Blackbody chromaticity for a temperature in K (Helland's fit to the Planck locus), each channel 0–1. */
+/**
+ * Frequency-integrated brightness of disk gas, relative to the hottest ring: (gT/T_peak)⁴. I_ν/ν³ is invariant, so
+ * I_ν ∝ g³ and integrating over frequency adds one more g (docs/VERIFICATION.md 5b-i); equally, Stefan–Boltzmann at gT.
+ */
+export function diskBrightness(g: number, kelvin: number, tPeak: number): number {
+  return ((g * kelvin) / tPeak) ** 4;
+}
+
+/** sRGB-encoded channel (0–1) → linear light, for doing light math on blackbodyRGB output (IEC 61966-2-1 curve). */
+export function srgbToLinear(c: number): number {
+  return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+}
+
+/** Blackbody colour for a temperature in K (Helland's fit), each channel 0–1, **sRGB-encoded** (display values). */
 export function blackbodyRGB(kelvin: number): Vec3 {
   const t = Math.min(Math.max(kelvin, 1000), 40000) / 100;
   const clamp = (n: number) => Math.min(Math.max(n, 0), 1);
