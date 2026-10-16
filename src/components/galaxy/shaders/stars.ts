@@ -6,6 +6,7 @@ attribute vec3 aOffset;
 attribute vec3 aColor;
 attribute float aSize;
 uniform vec3 uVelocity;
+uniform float uTidal;
 uniform float uPixelRatio;
 uniform float uTime;
 varying vec3 vColor;
@@ -15,6 +16,12 @@ void main() {
   vec3 vel = mat3(viewMatrix) * uVelocity;
   float speed = length(vel.xy);
   vec2 along = speed > 1e-4 ? normalize(vel.xy) : vec2(0.0, 1.0);
+  // Spaghettification (intro): stretch radially toward the black hole at the origin.
+  vec2 toHole = (viewMatrix * vec4(0.0, 0.0, 0.0, 1.0)).xy - mv.xy;
+  if (uTidal > 0.001 && dot(toHole, toHole) > 1e-6) {
+    along = normalize(toHole);
+    speed = max(speed, uTidal * 0.6);
+  }
   vec2 across = vec2(along.y, -along.x); // keeps the quad counter-clockwise (front-facing)
   float size = aSize * uPixelRatio;
   // stretch along the travel direction during warps (speed is 0 at rest, so stars stay points)

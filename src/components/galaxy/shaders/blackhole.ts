@@ -1,6 +1,6 @@
 // Schwarzschild black hole, ray traced per pixel (GALAXY §1.1). Same equations as src/lib/physics/blackhole.ts:
 // x'' = -1.5 h² x / r⁵ (r_s = 1), thin-disk T ∝ r^-3/4 (1 - √(r_in/r))^1/4, Doppler × gravitational shift,
-// I ∝ g³ (T/T_peak)⁴, blackbody colour. Rendered on the front faces of a bounding sphere around the hole.
+// I ∝ (gT/T_peak)⁴, linearised blackbody colour. Rendered on the front faces of a bounding sphere around the hole.
 
 export const BOUND_RADIUS = 13; // outside the disk (r_out 11) and the lensing zone (b < 7.5)
 
@@ -50,6 +50,10 @@ vec3 blackbody(float k) {
   float b = t >= 66.0 ? 1.0 : (t <= 19.0 ? 0.0 : clamp(0.54320678911 * log(t - 10.0) - 1.19625408914, 0.0, 1.0));
   return vec3(r, g, b);
 }
+// Helland's fit returns sRGB-encoded values; light math (and the tone map below) needs linear light.
+vec3 srgbToLinear(vec3 c) {
+  return mix(c / 12.92, pow((c + 0.055) / 1.055, vec3(2.4)), step(vec3(0.04045), c));
+}
 
 float diskShape(float r) {
   return r <= uRIn ? 0.0 : pow(r / uRIn, -0.75) * pow(1.0 - sqrt(uRIn / r), 0.25);
@@ -68,8 +72,8 @@ vec3 diskEmission(vec3 p, vec3 photonDir) {
   float angle = atan(p.z, p.x) - omega * uTime;
   float streaks = 0.55 + 0.9 * fbm(vec2(r * 1.6, angle * 6.0 / 3.14159265 + r * 0.35));
   float fade = clamp((uROut - r) / 2.5, 0.0, 1.0);
-  float intensity = g * g * g * pow(t / uPeakK, 4.0) * streaks * fade;
-  return blackbody(g * t) * intensity * uExposure;
+  float intensity = pow(g * t / uPeakK, 4.0) * streaks * fade; // frequency-integrated: (gT)⁴, not g³T⁴
+  return srgbToLinear(blackbody(g * t)) * intensity * uExposure;
 }
 
 vec3 stars(vec3 d) {
@@ -77,12 +81,15 @@ vec3 stars(vec3 d) {
   vec3 cell = floor(p);
   if (hash(cell) > 0.0035) return vec3(0.0);
   float b = pow(max(0.0, 1.0 - length(p - cell - 0.5) * 2.2), 2.0) * 1.4;
-  return blackbody(3000.0 + hash(cell.zxy) * 12000.0) * b;
+  return srgbToLinear(blackbody(3000.0 + hash(cell.zxy) * 12000.0)) * b;
 }
 
 void main() {
+  // Back faces are drawn, so this works with the camera outside or inside the bounding sphere (the dive-in intro).
   vec3 rd = normalize(vWorld - cameraPosition);
-  vec3 x = vWorld;                                         // enter the bounding sphere
+  float b0 = dot(cameraPosition, rd);
+  float c0 = dot(cameraPosition, cameraPosition) - BOUND * BOUND;
+  vec3 x = c0 > 0.0 ? cameraPosition + rd * max(-b0 - sqrt(max(b0 * b0 - c0, 0.0)), 0.0) : cameraPosition;
   vec3 v = rd;
   vec3 hv = cross(x, v);
   float h2 = dot(hv, hv);

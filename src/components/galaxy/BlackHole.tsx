@@ -2,9 +2,11 @@
 
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
-import type * as THREE from "three";
+import * as THREE from "three";
 import { DISK } from "@/lib/hero-scene";
 import { BOUND_RADIUS, blackHoleFragment, blackHoleVertex } from "./shaders/blackhole";
+
+const SPIN = 6;
 
 /** Ray-traced Schwarzschild black hole at the origin. `steps` bounds the geodesic integration per pixel. */
 export function BlackHole({ lensing, steps, onFirstFrame }: { lensing: boolean; steps: number; onFirstFrame: () => void }) {
@@ -27,7 +29,7 @@ export function BlackHole({ lensing, steps, onFirstFrame }: { lensing: boolean; 
   useFrame((state) => {
     if (!material.current) return;
     const u = material.current.uniforms;
-    u.uTime!.value = state.clock.elapsedTime;
+    u.uTime!.value = state.clock.elapsedTime * SPIN; // Keplerian ratios kept, sped up to be visible
     u.uSteps!.value = steps;
     u.uLensing!.value = lensing ? 1 : 0;
     if (first.current) {
@@ -50,6 +52,7 @@ export function BlackHole({ lensing, steps, onFirstFrame }: { lensing: boolean; 
         transparent
         premultipliedAlpha
         depthWrite={false}
+        side={THREE.BackSide}
       />
     </mesh>
   );

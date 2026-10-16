@@ -19,12 +19,14 @@ export default function Home() {
       <a className="skip" href="#content">Skip to content</a>
       <div className="shell">
         <header className="hero" aria-label={`About ${c.person.shortName}`}>
-          <div className="void" role="img" aria-label="A black hole: a dark shadow ringed by light, with a glowing accretion disk whose far side bends over the top.">
-            {/* Ray-traced with the same physics as the 3D layer (scripts/render-hero-still.mjs); hidden once 3D draws. */}
-            <Image className="void-still" src="/hero-still.png" alt="" fill sizes="(max-width: 860px) 100vw, 900px" preload />
-            <p>Scroll to travel</p>
+          {/* In world mode (3D on) the hero becomes a scroll runway and this stage stays pinned (GALAXY §2.2). */}
+          <div className="hero-stage">
+            <div className="void" role="img" aria-label="A black hole: a dark shadow ringed by light, with a glowing accretion disk whose far side bends over the top.">
+              {/* Ray-traced with the same physics as the 3D layer (scripts/render-hero-still.mjs); hidden once 3D draws. */}
+              <Image className="void-still" src="/hero-still.png" alt="" fill sizes="(max-width: 860px) 100vw, 900px" preload />            </div>
+            <Rail c={c} />
+            <p className="intro-hint" aria-hidden="true">Scroll to enter</p>
           </div>
-          <Rail c={c} />
         </header>
         <main id="content" className="content" tabIndex={-1}>
           <Sections c={c} />

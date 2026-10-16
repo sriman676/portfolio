@@ -23,9 +23,20 @@ describe("governor (GALAXY §12)", () => {
     const g = new Governor("high");
     const t = run(g, 60, 0, 2500);
     run(g, 35, t, 3600);
-    expect(g.name).toBe("no-dof");
+    expect(g.name).toBe("no-lensing");
     run(g, 35, t + 3600, 3600);
-    expect(g.name).toBe("no-chromatic-grain");
+    expect(g.name).toBe("dpr-1");
+  });
+
+  it("never steps down from paused on-demand renders, and a slow streak doesn't resume across a pause", () => {
+    const g = new Governor("high");
+    let t = run(g, 60, 0, 2500);
+    t = run(g, 8, t, 60_000, true); // hero off screen: sparse renders while the reader scrolls
+    expect(g.name).toBe("full");
+    t = run(g, 35, t, 2000); // slow for 2 s…
+    t = run(g, 8, t, 5000, true); // …pause…
+    run(g, 35, t, 2000); // …slow for 2 s again: never 3 s in a row
+    expect(g.name).toBe("full");
   });
 
   it("jumps straight to DPR 1 when the GPU is far behind (< 25 FPS for 1.5 s)", () => {

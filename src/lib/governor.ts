@@ -1,10 +1,10 @@
 import type { Tier } from "./tier";
 
-/** GALAXY §12 quality ladder, best first. Rungs whose effect doesn't exist yet (DoF, bloom…) are kept so later phases plug in. */
-export const LADDER = [
-  "full", "no-dof", "no-chromatic-grain", "no-lensing", "bloom-half", "no-bloom",
-  "dpr-1", "stars-half", "nebula-half", "medium", "low",
-] as const;
+/**
+ * GALAXY §12 quality ladder, best first, holding only rungs that change something today: a rung with no effect
+ * would just cost 3 s of slow frames. Add the DoF, grain, bloom and nebula rungs in spec order when they exist.
+ */
+export const LADDER = ["full", "no-lensing", "dpr-1", "stars-half", "medium", "low"] as const;
 export type Rung = (typeof LADDER)[number];
 
 const at = (rung: Rung) => LADDER.indexOf(rung);
@@ -59,10 +59,15 @@ export class Governor {
     this.rung = this.best;
   }
 
-  /** Feed one frame. Returns true when the rung changed. */
-  sample(frameMs: number, now: number, warping = false): boolean {
+  /** Feed one frame. `paused` frames (a warp, or on-demand renders while the hero is off screen) don't count. Returns true when the rung changed. */
+  sample(frameMs: number, now: number, paused = false): boolean {
     if (this.startedAt < 0) this.startedAt = now;
-    if (warping || now - this.startedAt < WARMUP_MS || this.rung >= LADDER.length - 1) return false;
+    if (paused) {
+      // Gaps between on-demand renders aren't GPU load, and a slow streak must not resume across them.
+      this.slowSince = this.criticalSince = this.fastSince = -1;
+      return false;
+    }
+    if (now - this.startedAt < WARMUP_MS || this.rung >= LADDER.length - 1) return false;
     // A frame this long is a paused tab or an on-demand render, not GPU load: ignore it.
     if (frameMs > MAX_FRAME_MS) return false;
     this.push(now, frameMs);

@@ -9,3 +9,8 @@ content.export.ts
 
 .vercel
 .env*
+# local agent-tool state (ruflo, harness) and locally installed agent skills (owner: not committed)
+.claude-flow/
+.claude/
+.agents/
+skills-lock.json

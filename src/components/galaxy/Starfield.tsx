@@ -3,6 +3,7 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useMemo } from "react";
 import * as THREE from "three";
+import { introState } from "@/lib/intro";
 import { blackbodyRGB } from "@/lib/physics/blackhole";
 import { starsFragment, starsVertex } from "./shaders/stars";
 
@@ -55,7 +56,7 @@ export function Starfield({ count, visibleShare }: { count: number; visibleShare
     const mat = new THREE.ShaderMaterial({
       vertexShader: starsVertex,
       fragmentShader: starsFragment,
-      uniforms: { uVelocity: { value: new THREE.Vector3() }, uPixelRatio: { value: 1 }, uTime: { value: 0 } },
+      uniforms: { uVelocity: { value: new THREE.Vector3() }, uTidal: { value: 0 }, uPixelRatio: { value: 1 }, uTime: { value: 0 } },
       transparent: true,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
@@ -66,7 +67,10 @@ export function Starfield({ count, visibleShare }: { count: number; visibleShare
   useEffect(() => () => { geometry.dispose(); material.dispose(); }, [geometry, material]);
   useEffect(() => { geometry.instanceCount = Math.floor(count * visibleShare); }, [geometry, count, visibleShare]);
   useEffect(() => { material.uniforms.uPixelRatio!.value = dpr; }, [material, dpr]);
-  useFrame((state) => { material.uniforms.uTime!.value = state.clock.elapsedTime; });
+  useFrame((state) => {
+    material.uniforms.uTime!.value = state.clock.elapsedTime;
+    material.uniforms.uTidal!.value = introState.tidal;
+  });
 
   return <mesh geometry={geometry} material={material} frustumCulled={false} />;
 }
